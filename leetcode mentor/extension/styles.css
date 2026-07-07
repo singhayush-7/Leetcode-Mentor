@@ -1,0 +1,222 @@
+#ai-dsa-panel{
+    position:fixed;
+    top:15px;
+    right:15px;
+    width:420px;
+    height:92vh;
+    border-radius:12px;
+    background: #282828;
+    border: 1px solid #3e3e3e;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    overflow-y:auto;
+    z-index:999999;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+#ai-dsa-panel h2{
+    margin-top:0;
+    font-size:20px;
+    font-weight: 600;
+    color:#eff2f6;
+}
+#ai-dsa-panel h3{
+    margin-top:20px;
+    font-size:16px;
+    font-weight: 600;
+    color:#eff2f6;
+    border-bottom:1px solid #3e3e3e;
+    padding-bottom:6px;
+}
+#ai-dsa-panel p{
+    line-height:1.6;
+    color:#bfbfbf;
+    font-size: 14px;
+}
+.reveal-btn{
+    width:100%;
+    padding:10px;
+    margin-top:12px;
+    border:none;
+    border-radius:6px;
+    background:#333;
+    color:#eff2f6;
+    cursor:pointer;
+    font-size:14px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+.reveal-btn:hover{
+    background:#444;
+}
+#close-ai-panel{
+    background:none;
+    border:none;
+    font-size:20px;
+    color:#bfbfbf;
+    cursor:pointer;
+    padding:4px;
+    transition: color 0.2s ease;
+}
+#close-ai-panel:hover{
+    color:#eff2f6;
+}
+hr{
+    margin:18px 0;
+    border:none;
+    border-top:1px solid #3e3e3e;
+}
+.panel-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+.info-card{
+    background:#333;
+    border-radius:8px;
+    padding:14px;
+    margin:12px 0;
+    border:1px solid #3e3e3e;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.info-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+.info-title{
+    font-size:14px;
+    font-weight:600;
+    color:#0a84ff;
+    margin-bottom:8px;
+}
+.badge{
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:20px;
+    font-weight:600;
+    color:white;
+    font-size:12px;
+}
+.badge.easy{
+    background:#2cbb5d;
+}
+.badge.medium{
+    background:#ffc01e;
+}
+.badge.hard{
+    background:#ef4444;
+}
+.score-box{
+    text-align:center;
+    padding:20px;
+    margin-bottom:18px;
+    background:#333;
+    border-radius:8px;
+    border:1px solid #3e3e3e;
+}
+.score-number{
+    font-size:42px;
+    font-weight:700;
+    color:#0a84ff;
+}
+.section{
+    margin-top:18px;
+}
+.section-title{
+    font-weight:600;
+    margin-bottom:8px;
+    color:#eff2f6;
+}
+.recent-review{
+    padding:12px;
+    margin:10px 0;
+    border-radius:8px;
+    background:#333;
+    border-left:4px solid #2cbb5d;
+}
+.coach-card{
+    margin:15px 0;
+    padding:15px;
+    border-radius:8px;
+    border:1px solid #3e3e3e;
+    background:#333;
+}
+.coach-card h3{
+    margin-top:14px;
+    margin-bottom:5px;
+    color:#0a84ff;
+}
+.coach-card p{
+    margin:0;
+    line-height:1.6;
+    color:#bfbfbf;
+}
+.dashboard-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.dashboard-tabs{
+    display:flex;
+    gap:10px;
+    margin:15px 0;
+}
+.tab{
+    padding:8px 14px;
+    cursor:pointer;
+    border:none;
+    border-radius:6px;
+    background:#333;
+    color:#bfbfbf;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+.tab:hover{
+    background: #444;
+}
+.tab.active{
+    background:#0a84ff;
+    color: white;
+}
+#dashboard-content{
+    margin-top:15px;
+}
+.weak-topic-card{
+    background:#333;
+    border:1px solid #3e3e3e;
+    border-radius:8px;
+    padding:14px;
+    margin-bottom:12px;
+}
+.weak-topic-card h3{
+    color:#ffc01e;
+    margin-bottom:8px;
+}
+.progress-card{
+    background:#333;
+    border:1px solid #3e3e3e;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+.score-card{
+    background:#282828;
+    padding:10px;
+    margin-bottom:10px;
+    border-radius:6px;
+}
+.coach-section { margin-bottom: 20px; }
+.coach-section h3 { font-size: 16px; margin-bottom: 10px; color: #0a84ff; border-bottom: 1px solid #3e3e3e; padding-bottom: 5px; }
+.split-card { display: flex; gap: 15px; }
+.split-card > div { flex: 1; }
+.coach-list { margin: 0; padding-left: 20px; color: #bfbfbf; }
+.coach-list li { margin-bottom: 5px; }
+.goal-card { border-left: 4px solid #2cbb5d; }
+.plan-day { margin-bottom: 10px; padding: 10px; background: #282828; border-radius: 6px; }
+.plan-day strong { color: #ffc01e; }
+.plan-day p { margin: 5px 0 0 0; font-size: 13px; color: #bfbfbf; }
+.readiness-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 14px; color: #bfbfbf; }
+.readiness-overall { font-size: 16px; font-weight: bold; color: #a855f7; text-align: center; }
+.motivation-card { font-style: italic; text-align: center; color: #2cbb5d; }
+.progress-list { margin-top: 20px; }
+.progress-item { font-size: 15px; color: #bfbfbf; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }

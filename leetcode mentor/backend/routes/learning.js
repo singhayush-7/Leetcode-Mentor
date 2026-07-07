@@ -1,0 +1,1 @@
+import express from "express";import { getLearningInsights }from "../services/learningService.js";const router = express.Router();router.get("/", async (req, res) => {    const learning =        await getLearningInsights();    res.json(learning);});export default router;
