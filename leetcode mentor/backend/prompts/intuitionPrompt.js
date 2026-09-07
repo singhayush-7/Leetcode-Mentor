@@ -12,7 +12,6 @@ CRITICAL RULES:
 - Do NOT use generic text.
 - You MUST reference specific constraints or keywords from the problem statement.
 - Do NOT use unescaped double quotes inside strings.
-{{ ... }}
 Problem Title: ${title}
 Problem Statement: ${statement}`;
 }

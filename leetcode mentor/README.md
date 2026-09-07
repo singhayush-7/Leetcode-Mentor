@@ -53,7 +53,7 @@ A Manifest V3 Chrome Extension injects a custom, non-intrusive UI directly into 
 ### Request Flow
 1. **Trigger:** User clicks "Get Hint" on the injected Chrome UI.
 2. **Scrape:** `content.js` reads the DOM for current code and problem description.
-3. **API Call:** Extension sends a POST request to `http://localhost:5000/analyze`.
+3. **API Call:** Extension sends a POST request to `http://localhost:3001/analyze`.
 4. **Vectorization:** Backend calls Ollama (`nomic-embed-text`) to generate embeddings for the current code.
 5. **Retrieval:** `retrievalService.js` calculates cosine similarity against the `lowdb` database to find past relevant reviews.
 6. **Prompt Assembly:** Backend stitches the code, problem text, and retrieved history into a specific system prompt.
@@ -84,7 +84,7 @@ ollama pull nomic-embed-text
    ```bash
    npm install
    ```
-3. Start the development server (runs on `http://localhost:5000`):
+3. Start the development server (runs on `http://localhost:3001`):
    ```bash
    npm run dev
    ```
