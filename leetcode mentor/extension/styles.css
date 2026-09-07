@@ -220,3 +220,31 @@ hr{
 .motivation-card { font-style: italic; text-align: center; color: #2cbb5d; }
 .progress-list { margin-top: 20px; }
 .progress-item { font-size: 15px; color: #bfbfbf; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+
+/* Floating toolbar (fallback when Run button not found in LeetCode toolbar) */
+#ai-mentor-toolbar {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+#ai-analyze-btn, #ai-review-btn, #ai-dashboard-btn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    background: #0a84ff;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transition: background 0.2s ease, transform 0.1s ease;
+    white-space: nowrap;
+}
+#ai-analyze-btn:hover, #ai-review-btn:hover, #ai-dashboard-btn:hover {
+    background: #0070e0;
+    transform: translateY(-1px);
+}

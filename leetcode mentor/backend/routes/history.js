@@ -1,1 +1,9 @@
-import express from "express";import db from "../database/database.js";const router = express.Router();router.get("/", async (req, res) => {    await db.read();    const history = [...db.data.reviews].reverse();    res.json(history);});export default router;
+import express from "express";
+import db from "../database/database.js";
+const router = express.Router();
+router.get("/", async (req, res) => {
+  await db.read();
+  const history = [...db.data.reviews].reverse();
+  res.json(history);
+});
+export default router;

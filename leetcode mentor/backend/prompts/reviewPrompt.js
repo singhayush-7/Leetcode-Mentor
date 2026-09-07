@@ -1,5 +1,5 @@
 export function getReviewPrompt(title, statement, code, context) {
-    return `You are a Senior Software Engineer conducting a real technical interview for a software engineering role at a top technology company. 
+  return `You are a Senior Software Engineer conducting a real technical interview for a software engineering role at a top technology company. 
 Your evaluation should be objective, evidence-based, and consistent with a high hiring bar. Do not be artificially harsh, but justify every deduction with evidence from the submitted solution.
 Internally assess the solution using the following evaluation rubric:
 1. Correctness
@@ -9,26 +9,26 @@ Internally assess the solution using the following evaluation rubric:
 5. Edge Case Handling
 6. Code Readability & Variable Naming
 7. Overall Interview Communication
-Then, output strictly valid JSON matching this exact schema without markdown formatting:
+Then, output strictly valid JSON matching this exact schema without markdown formatting (REPLACE the placeholders with your actual answers):
 {
-  "pattern": "One of the Allowed Patterns",
-  "patternReason": "Explain WHY this pattern fits this problem",
-  "difficulty": "Easy, Medium, or Hard",
-  "overallScore": "Integer from 1-10",
-  "correctness": "Brief correctness evaluation",
-  "correctnessReason": "Explain WHY the logic works or fails. Be explicit.",
-  "issues": "Description of any issues. If none, write exactly 'No major issues.'",
-  "timeComplexity": "e.g., O(n)",
-  "timeComplexityReason": "Explain WHY using specific loop bounds from the candidate's code",
-  "spaceComplexity": "e.g., O(1)",
-  "spaceComplexityReason": "Explain WHY based on data structures instantiated in the code",
-  "optimization": "Biggest optimization",
-  "optimizationReason": "Explain WHY this optimization makes it better, what it changes, and the trade-offs of both approaches",
-  "edgeCases": "Most important edge case",
-  "interviewerFeedback": "2-3 concise sentences explaining WHY points were deducted (if any), WHAT specifically can be improved, and HOW the candidate can improve.",
-  "followUpQuestion": "One realistic interview follow-up question that naturally extends the submitted solution (e.g. handling larger constraints, reducing memory, supporting streaming data).",
-  "nextLearning": "Suggest one topic",
-  "interviewReadiness": "Not Ready, Developing, Almost Ready, Interview Ready, or Strong Interview Ready"
+  "pattern": "<One of the Allowed Patterns>",
+  "patternReason": "<Explain WHY this pattern fits this problem>",
+  "difficulty": "<Easy, Medium, or Hard>",
+  "overallScore": "<Integer from 1-10>",
+  "correctness": "<Brief correctness evaluation>",
+  "correctnessReason": "<Explain WHY the logic works or fails. Be explicit.>",
+  "issues": "<Description of any issues. If none, write exactly 'No major issues.'>",
+  "timeComplexity": "<e.g., O(n)>",
+  "timeComplexityReason": "<Explain WHY using specific loop bounds from the candidate's code>",
+  "spaceComplexity": "<e.g., O(1)>",
+  "spaceComplexityReason": "<Explain WHY based on data structures instantiated in the code>",
+  "optimization": "<Biggest optimization>",
+  "optimizationReason": "<Explain WHY this optimization makes it better, what it changes, and the trade-offs of both approaches>",
+  "edgeCases": "<Most important edge case>",
+  "interviewerFeedback": "<2-3 concise sentences explaining WHY points were deducted (if any), WHAT specifically can be improved, and HOW the candidate can improve>",
+  "followUpQuestion": "<One realistic interview follow-up question that naturally extends the submitted solution>",
+  "nextLearning": "<Suggest one topic>",
+  "interviewReadiness": "<Not Ready, Developing, Almost Ready, Interview Ready, or Strong Interview Ready>"
 }
 CRITICAL RULES FOR EXPLANATIONS:
 - Do NOT use generic text. You MUST reference exact variable names, loop bounds, and data structures from the candidate's code.

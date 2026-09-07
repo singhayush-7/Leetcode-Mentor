@@ -1,1 +1,6 @@
-import { cosineSimilarity } from "./services/vectorService.js";const a = [1, 2, 3];const b = [1, 2, 3];const c = [3, 2, 1];console.log(cosineSimilarity(a, b));console.log(cosineSimilarity(a, c));
+import { cosineSimilarity } from "./services/vectorService.js";
+const a = [1, 2, 3];
+const b = [1, 2, 3];
+const c = [3, 2, 1];
+console.log(cosineSimilarity(a, b));
+console.log(cosineSimilarity(a, c));

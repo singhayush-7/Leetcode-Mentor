@@ -70,7 +70,7 @@ function renderAnalyzeResults(data) {
         </div>
         <div class="info-card">
             <div class="info-title">🎯 Difficulty</div>
-            <span class="badge ${String(data.difficulty).toLowerCase()}">${data.difficulty ?? "Unknown"}</span>
+            <span class="badge ${String(data.difficulty || "Unknown").toLowerCase()}">${data.difficulty ?? "Unknown"}</span>
         </div>
         <div class="info-card">
             <div class="info-title">⚡ Expected Complexity</div>
@@ -84,41 +84,41 @@ function renderAnalyzeResults(data) {
         <div class="section">
             <button class="reveal-btn" id="observation-btn">💡 Reveal Key Observation</button>
             <div id="observation-content" style="display:none;" class="info-card">
-                <p>${data.keyObservation}</p>
+                <p>${data.keyObservation || "Not available."}</p>
                 ${renderReason(data.observationReason)}
             </div>
         </div>
         <div class="section">
             <button class="reveal-btn" id="intuition-btn">🧠 Reveal Intuition</button>
             <div id="intuition-content" style="display:none;" class="info-card">
-                <p>${data.intuition}</p>
+                <p>${data.intuition || "Not available."}</p>
             </div>
         </div>
         <div class="section">
             <button class="reveal-btn" id="hint1-btn">💡 Reveal Hint 1</button>
             <div id="hint1-content" style="display:none;" class="info-card">
-                <p>${data.hint1}</p>
+                <p>${data.hint1 || "Not available."}</p>
                 ${renderReason(data.hint1Reason)}
             </div>
         </div>
         <div class="section">
             <button class="reveal-btn" id="hint2-btn">💡 Reveal Hint 2</button>
             <div id="hint2-content" style="display:none;" class="info-card">
-                <p>${data.hint2}</p>
+                <p>${data.hint2 || "Not available."}</p>
                 ${renderReason(data.hint2Reason)}
             </div>
         </div>
         <div class="section">
             <button class="reveal-btn" id="mistakes-btn">⚠ Reveal Common Mistakes</button>
             <div id="mistakes-content" style="display:none;" class="info-card">
-                <p>${Array.isArray(data.mistakesToAvoid) ? data.mistakesToAvoid.join("<br>") : data.mistakesToAvoid}</p>
+                <p>${Array.isArray(data.mistakesToAvoid) ? data.mistakesToAvoid.join("<br>") : (data.mistakesToAvoid || "Not available.")}</p>
                 ${renderReason(data.mistakesReason)}
             </div>
         </div>
         <div class="section">
             <button class="reveal-btn" id="solution-btn">📝 Reveal Solution Idea</button>
             <div id="solution-content" style="display:none;" class="info-card">
-                <p>${data.solutionExplanation}</p>
+                <p>${data.solutionExplanation || "Not available."}</p>
                 ${renderReason(data.explanationReason)}
             </div>
         </div>
@@ -341,13 +341,42 @@ const dashboardButton = document.createElement("button");
 dashboardButton.innerText = "📊 Dashboard";
 dashboardButton.id = "ai-dashboard-btn";
 function insertButton() {
-    const runButton = [...document.querySelectorAll("button")].find(btn => btn.innerText.trim() === "Run");
-    if (!runButton) return;
-    const parent = runButton.parentElement;
+    // Already injected, skip
     if (document.getElementById("ai-analyze-btn")) return;
-    parent.insertBefore(analyzeButton, runButton);
-    parent.insertBefore(reviewButton, runButton);
-    parent.insertBefore(dashboardButton, runButton);
+
+    // Try to find the Run or Submit button using flexible text matching
+    const allButtons = [...document.querySelectorAll("button")];
+    const runButton = allButtons.find(btn => {
+        const text = btn.innerText.trim().toLowerCase();
+        return text === "run" || text === "run code";
+    });
+
+    if (runButton) {
+        // Inject next to the Run button in the toolbar
+        const parent = runButton.parentElement;
+        parent.insertBefore(analyzeButton, runButton);
+        parent.insertBefore(reviewButton, runButton);
+        parent.insertBefore(dashboardButton, runButton);
+    } else {
+        // Fallback: inject as a floating toolbar at the bottom-right
+        let toolbar = document.getElementById("ai-mentor-toolbar");
+        if (toolbar) return;
+        toolbar = document.createElement("div");
+        toolbar.id = "ai-mentor-toolbar";
+        toolbar.style.cssText = `
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        `;
+        toolbar.appendChild(analyzeButton);
+        toolbar.appendChild(reviewButton);
+        toolbar.appendChild(dashboardButton);
+        document.body.appendChild(toolbar);
+    }
 }
 let scheduled = false;
 const observer = new MutationObserver(() => {
@@ -366,7 +395,7 @@ analyzeButton.addEventListener("click", async () => {
     try {
         const { title, statement, code } = getProblemContext();
         panelContent.innerHTML = renderAnalyzeProgress();
-        const response = await fetch("http://localhost:5000/analyze", {
+        const response = await fetch("http://localhost:3001/analyze", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ title, statement, code })
@@ -419,7 +448,7 @@ reviewButton.addEventListener("click", async () => {
             <p>🎯 Preparing interview feedback...</p>
         `;
         const { title, statement, code } = getProblemContext();
-        const response = await fetch("http://localhost:5000/review", {
+        const response = await fetch("http://localhost:3001/review", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ title, statement, code })
@@ -438,9 +467,9 @@ dashboardButton.addEventListener("click", async () => {
     try {
         panelContent.innerHTML = `<p>Loading Dashboard...</p>`;
         const [analyticsRes, coachRes, learningRes] = await Promise.all([
-            fetch("http://localhost:5000/analytics"),
-            fetch("http://localhost:5000/coach"),
-            fetch("http://localhost:5000/learning")
+            fetch("http://localhost:3001/analytics"),
+            fetch("http://localhost:3001/coach"),
+            fetch("http://localhost:3001/learning")
         ]);
         const data = await analyticsRes.json();
         const coach = await coachRes.json();
